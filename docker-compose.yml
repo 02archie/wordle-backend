@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+
+  pgsql:
+    image: postgres
+    container_name: pgsql_wordle
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${PGSQL_PASSWORD_DOCKER}
+      POSTGRES_DB: ${PGSQL_DB_DOCKER}
+    ports:
+      - '${PGSQL_PORT_DOCKER}:5432'
+    volumes:
+      - ${PGSQL_VOLUME}:/var/lib/postgresql/data
+    networks:
+      - net_wordle
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - net_wordle
+
+  api_wordle:
+    container_name: api_wordle
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '${PORT}:3000'
+    volumes:
+      - ${VOLUME_API_DOCKER}:/usr/src/app
+    depends_on: 
+      - pgsql
+    networks:
+      - net_wordle
+
+networks:
+  net_wordle:
