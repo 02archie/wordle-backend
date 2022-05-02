@@ -19,7 +19,7 @@ import { UpdateGameDto } from './dto/update-game.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Response } from 'express';
 
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Controller('games')
 export class GamesController extends AppController {
   constructor(private readonly gamesService: GamesService) {
@@ -31,7 +31,7 @@ export class GamesController extends AppController {
   async createGame(@Body() createGameDto: CreateGameDto, @Res() res: Response) {
     try {
       const game = await this.gamesService.createGame(createGameDto);
-      return this.responseOk(Object(game), res);
+      return this.responseOk(game, res);
     } catch (error) {
       console.log(error);
 
@@ -44,7 +44,7 @@ export class GamesController extends AppController {
   async getBestPlayers(@Res() res: Response) {
     try {
       const players = await this.gamesService.getBestPlayers();
-      return this.responseOk(Object(players), res);
+      return this.responseOk(players, res);
     } catch (error) {
       return this.responseWithErrors(error, res);
     }
@@ -55,7 +55,7 @@ export class GamesController extends AppController {
   async getResultsGame(@Param('id') id: number, @Res() res: Response) {
     try {
       const result = await this.gamesService.getGame(id);
-      return this.responseOk(Object(result), res);
+      return this.responseOk(result, res);
     } catch (error) {
       console.log(error);
 
@@ -68,7 +68,7 @@ export class GamesController extends AppController {
   async getStadistics(@Param('id') id: number, @Res() res: Response) {
     try {
       const stadistics = await this.gamesService.getStadistics(id);
-      return this.responseOk(Object(stadistics), res);
+      return this.responseOk(stadistics, res);
     } catch (error) {
       return this.responseWithErrors(error, res);
     }
@@ -79,7 +79,7 @@ export class GamesController extends AppController {
   async updateFindWord(@Param('id') id: number, @Res() res: Response) {
     try {
       const update_word = await this.gamesService.updateFindWord(id);
-      return this.responseOk(Object(update_word), res);
+      return this.responseOk(update_word, res);
     } catch (error) {
       console.log(error);
       return this.responseWithErrors(error, res);
@@ -94,7 +94,7 @@ export class GamesController extends AppController {
   ) {
     try {
       const word = await this.gamesService.compareWord(updateGameDto);
-      return this.responseOk(Object(word), res);
+      return this.responseOk(word, res);
     } catch (error) {
       return this.responseWithErrors(error, res);
     }

@@ -65,7 +65,7 @@ export class GamesService {
     return await this.updateFindWord(this.id_game);
   }
 
-  // Comparar palabra del usuario con palabra de la bd
+  // Comparar palabra del usuario con palabra de la bd y aumenta los intentos y partidas jugadas
   async compareWord(updateGameDto: UpdateGameDto) {
     const game = await this.getGame(updateGameDto.id);
     updateGameDto.games = game.games + 1;
@@ -76,9 +76,13 @@ export class GamesService {
       where: { id: +updateGameDto.id },
       data: data,
     });
+    // cuando la palabra sea adivinada se aumentará un contador para ver las palabras que más se encuentran
+    // const aument_count = await this.wordService.countFound(game.word);
+    // console.log(aument_count, 'SE AUMENTO EL CONTADOR');
     return find_word;
   }
 
+  // Compara letra con todas las posiciones de un array
   // async foundWord(word: string, list: Array<string>) {
   //   let left: number = 0;
   //   let right: number = list.length - 1;
@@ -98,10 +102,6 @@ export class GamesService {
   //       console.log('izquierda');
   //       left = middle + 1;
   //     }
-  //   }
-
-  //   for (const item of ) {
-  //     await this.rightChar()
   //   }
 
   //   console.log(position, 'POSICION');

@@ -19,7 +19,17 @@ export class WordsController extends AppController {
   async getOneWord(@Res() res: Response) {
     try {
       const word = await this.wordsService.getOneWord();
-      return this.responseOk(Object(word), res);
+      return this.responseOk(word, res);
+    } catch (error) {
+      return this.responseWithErrors(error, res);
+    }
+  }
+
+  @Get('more_found')
+  async getWordsMoreFound(@Res() res: Response) {
+    try {
+      const words = await this.wordsService.getWordsMoreFound();
+      return this.responseOk({ count: words.length, words: words }, res);
     } catch (error) {
       return this.responseWithErrors(error, res);
     }

@@ -10,6 +10,7 @@ datasource db {
 model words {
   id         Int       @id @default(autoincrement())
   word       String    @unique @db.VarChar(255)
+  found      Int       @default(0)
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now())
   deleted_at DateTime?

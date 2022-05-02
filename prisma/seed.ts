@@ -1,9 +1,11 @@
 import { PrismaClient, Prisma } from '@prisma/client';
+import { users } from './data/user';
 import { words } from './data/words';
 
 const prisma = new PrismaClient();
 
 const wordsData: Prisma.wordsCreateInput[] = words;
+const usersData: Prisma.usersCreateInput[] = users;
 
 async function main() {
   console.log(`Start seeding ...`);
@@ -11,8 +13,15 @@ async function main() {
     const word = await prisma.words.create({
       data: u,
     });
-    console.log(`Created user with id: ${word.id}`);
+    console.log(`Created word with id: ${word.id}`);
   }
+  for (const u of usersData) {
+    const user = await prisma.users.create({
+      data: u,
+    });
+    console.log(`Created user with id: ${user.id}`);
+  }
+
   console.log(`Seeding finished.`);
 }
 

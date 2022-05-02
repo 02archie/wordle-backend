@@ -41,3 +41,11 @@ npx prisma db seed
 @Public()
 ```
 
+## Notas.
+- **Todas las rutas estan protegidas, para iniciar sesion hay un usuario de prueba, que se crea al ejecutar los seeders, las credenciales son las siguientes**
+  ```
+  {
+      "email": "admin@wordle.com",
+      "password": "123456"
+  }
+  ```
