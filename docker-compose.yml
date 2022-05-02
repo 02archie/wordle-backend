@@ -34,7 +34,7 @@ services:
       - '${PORT}:3000'
     volumes:
       - ${VOLUME_API_DOCKER}:/usr/src/app
-    depends_on: 
+    depends_on:
       - pgsql
     networks:
       - net_wordle

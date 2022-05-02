@@ -9,7 +9,7 @@ datasource db {
 
 model words {
   id         Int       @id @default(autoincrement())
-  word       String    @unique
+  word       String    @unique @db.VarChar(255)
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now())
   deleted_at DateTime?
@@ -17,10 +17,26 @@ model words {
 
 model users {
   id         Int       @id @default(autoincrement())
-  name       String
-  last_name  String
-  email      String    @unique
-  password   String
+  name       String    @db.VarChar(255)
+  last_name  String    @db.VarChar(255)
+  email      String    @unique @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  deleted_at DateTime?
+  game       game[]
+}
+
+model game {
+  id         Int       @id @default(autoincrement())
+  word       String    @db.VarChar(255)
+  word_user  String?   @db.VarChar(255)
+  attempts   Int?      @default(0)
+  points     Int?      @default(0)
+  games      Int?      @default(0)
+  games_won  Int?      @default(0)
+  users      users     @relation(fields: [player_id], references: [id])
+  player_id  Int
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now())
   deleted_at DateTime?

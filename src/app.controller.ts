@@ -1,5 +1,8 @@
+import { Response } from 'express';
+
 export class AppController {
-  responseOk(data: [], res) {
+  // Metodo para estructurar respuesta con status 200
+  responseOk(data: Object, res: Response) {
     const statusCode = 200;
     return res.status(statusCode).json({
       errors: false,
@@ -8,29 +11,12 @@ export class AppController {
     });
   }
 
-  responseOkPagination(data: [], pagination: [], res) {
-    const statusCode = 200;
-    return res.status(statusCode).json({
-      errors: false,
-      status_code: statusCode,
-      data: data ? data : [],
-      pagination: pagination,
-    });
-  }
-
-  responseWithErrors(error: [], res) {
+  // Metodo para estructurar respuesta error
+  responseWithErrors(error: Object, res: Response) {
     const statusCode = 400;
     return res.status(statusCode).json({
       status_code: statusCode,
       errors: error,
-    });
-  }
-
-  responseErrorWithMessage(message: string, res) {
-    const statusCode = 400;
-    return res.status(statusCode).json({
-      status_code: statusCode,
-      errors: message,
     });
   }
 }
