@@ -19,7 +19,7 @@ import { UpdateGameDto } from './dto/update-game.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Response } from 'express';
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Controller('games')
 export class GamesController extends AppController {
   constructor(private readonly gamesService: GamesService) {
@@ -99,4 +99,14 @@ export class GamesController extends AppController {
       return this.responseWithErrors(error, res);
     }
   }
+
+  // @Post('found_word/:word')
+  // async foundWord(@Res() res: Response, @Param('word') word: string) {
+  //   try {
+  //     return await this.gamesService.foundWord(word, ['a', 'b', 'c', 'l']);
+  //   } catch (error) {
+  //     console.log(error);
+  //     return this.responseWithErrors(error, res);
+  //   }
+  // }
 }

@@ -79,6 +79,43 @@ export class GamesService {
     return find_word;
   }
 
+  // async foundWord(word: string, list: Array<string>) {
+  //   let left: number = 0;
+  //   let right: number = list.length - 1;
+  //   let position: number = -1;
+  //   let found: boolean = false;
+  //   let middle: any;
+  //   while (found === false && left <= right) {
+  //     middle = Math.floor((left + right) / 2);
+  //     if (list[middle] == word) {
+  //       console.log('en medio');
+  //       found = true;
+  //       position = middle;
+  //     } else if (list[middle] > word) {
+  //       console.log('derecha');
+  //       right = middle - 1;
+  //     } else {
+  //       console.log('izquierda');
+  //       left = middle + 1;
+  //     }
+  //   }
+
+  //   for (const item of ) {
+  //     await this.rightChar()
+  //   }
+
+  //   console.log(position, 'POSICION');
+  //   return position;
+  // }
+
+  // async rightChar(position: number, character: string) {
+  //   const positions: Array<number> = [];
+  //   const chars: Array<string> = [];
+  //   positions.push(position);
+  //   chars.push(character);
+  //   return [positions, chars];
+  // }
+
   // obtener estadisticas
   async getStadistics(id: number) {
     const game = await this.prisma.game.findUnique({
