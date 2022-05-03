@@ -78,7 +78,6 @@ export class GamesService {
     });
     // cuando la palabra sea adivinada se aumentará un contador para ver las palabras que más se encuentran
     // const aument_count = await this.wordService.countFound(game.word);
-    // console.log(aument_count, 'SE AUMENTO EL CONTADOR');
     return find_word;
   }
 
@@ -108,13 +107,6 @@ export class GamesService {
   //   return position;
   // }
 
-  // async rightChar(position: number, character: string) {
-  //   const positions: Array<number> = [];
-  //   const chars: Array<string> = [];
-  //   positions.push(position);
-  //   chars.push(character);
-  //   return [positions, chars];
-  // }
 
   // obtener estadisticas
   async getStadistics(id: number) {
