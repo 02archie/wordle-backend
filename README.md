@@ -108,3 +108,5 @@ npx prisma db seed
       "password": "123456"
   }
   ```
+  
+- Se realizaron 3 contenedores, uno para el servidor de back end, otro para la base de datos hecha en postgresql y por último uno para adminer, para poder gestionar la base de datos de una manera visual.
