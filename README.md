@@ -64,6 +64,10 @@ npx prisma db seed
 
   **_GET_ https://localhost:{port}/api/words**
 
+- **Obtener las 5 palabras más adivinadas**
+
+  **_GET_ https://localhost:{port}/api/words/more_found**
+
 - **Obtener los mejores 10 jugadores**
 
   **_GET_ https://localhost:{port}/api/games/best_players**
@@ -88,23 +92,12 @@ npx prisma db seed
   }
   ```
 
-- **Actualizar el registro, aumentando los intentos, puntos, juegos ganados y partidas, todo esto por id del juego**
+- **Compara letra por letra, te dice si se encuentra la ingresada ingresada o no en la palabra a adivinar**
 
-  **_PUT_ https://localhost:{port}/api/games**
+  **_PUT_ https://localhost:{port}/api/games/found_word/{id}/{letter}**
 
-  Body:
 
-  ```
-  {
-    "id": 26,
-    "attempts": 1,
-    "points": 1,
-    "games_won": 1,
-    "word_user": "asjoa"
-  }
-  ```
-
-**Se realizó una tarea programada que actualiza la palabra asignada al usuario en la base de datos, esta tarea programada se ejecuta cada 5 minutos y ejecuta un servicio llamado *updateFindWord()***
+**Se realizó una tarea programada que actualiza la palabra asignada al usuario en la base de datos, esta tarea programada se ejecuta cada 5 minutos y ejecuta un servicio llamado _updateFindWord()_**
 
 ## Notas.
 

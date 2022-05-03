@@ -34,7 +34,7 @@ export class WordsService {
     const words = await this.prisma.words.findMany({
       where: { deleted_at: null },
       orderBy: [{ found: 'desc' }],
-      take: 10,
+      take: 5,
     });
     return words;
   }

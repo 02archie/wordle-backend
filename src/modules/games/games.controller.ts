@@ -14,7 +14,6 @@ import { GamesService } from './games.service';
 import { AppController } from '../../app.controller';
 
 import { CreateGameDto } from './dto/create-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
 
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Response } from 'express';
@@ -86,27 +85,19 @@ export class GamesController extends AppController {
     }
   }
 
-  // Adivinar palabra
-  @Put()
-  async compareWords(
+  // encontrar letra en la palabra a adivinar
+  @Put('found_word/:id/:word')
+  async foundWord(
     @Res() res: Response,
-    @Body() updateGameDto: UpdateGameDto,
+    @Param('id') id: number,
+    @Param('word') word: string,
   ) {
     try {
-      const word = await this.gamesService.compareWord(updateGameDto);
-      return this.responseOk(word, res);
+      const found = await this.gamesService.foundWord(word, id);
+      return this.responseOk(found, res);
     } catch (error) {
+      console.log(error);
       return this.responseWithErrors(error, res);
     }
   }
-
-  // @Post('found_word/:word')
-  // async foundWord(@Res() res: Response, @Param('word') word: string) {
-  //   try {
-  //     return await this.gamesService.foundWord(word, ['a', 'b', 'c', 'l']);
-  //   } catch (error) {
-  //     console.log(error);
-  //     return this.responseWithErrors(error, res);
-  //   }
-  // }
 }
